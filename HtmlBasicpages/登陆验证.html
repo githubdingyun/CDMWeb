@@ -3,8 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        body {
+            font-family: 微软雅黑, serif;
+        }
+
+        form {
+            width: 400px;
+            margin: 150px auto;
+            border: 1px solid #ff4652;
+
+        }
+
+        form h1 {
+            text-align: center;
+            margin: 0 auto;
+            padding: 5px;
+            border: 1px;
+
+        }
+
+        form div {
+            text-align: center;
+            margin: auto;
+            padding: 5px;
+            border: 1px solid saddlebrown;
+        }
+
+        .error_msg {
+            color: #b92c28;
+            border: 1px solid crimson;
+        }
+
+        .nice_msg {
+            color: #3ab946;
+            border: 1px solid #4fdc74;
+        }
+    </style>
 </head>
 <body>
-
+<h1>onsubmit属性，这个属性可以发起提交条件，从而在js层面过滤一些数据</h1>
+<form action="index.html" method="post" onsubmit="return check_name()">
+    <h1>登陆：</h1>
+    <br>
+    <label id="name_msg">账号：
+        <input type="text" style="width: auto" onblur="check_name();" id="name" name="username">
+        3--20个字母！！</label> <br>
+    <label id="pass_msg">密码：
+        <input type="password" style="width: auto" id="password" name="password" onblur="check_name()">
+        6--20个字母！！</label><br>
+    <div>
+        <input type="submit" value="submit" id="submit" style="height: 45px"> <br>
+    </div>
+</form>
 </body>
+<script type="text/javascript">
+    function check_name() {
+        var name = document.getElementById("name").value;
+        var password = document.getElementById("password").value;
+        var reg = /^\w{3,20}$/;
+        var regpass = /^\w{6,20}$/;
+        var name_msg = document.getElementById("name_msg");
+        var pass_msg = document.getElementById("pass_msg");
+        var a = 0;
+
+
+        // 正确则去除样式
+        if (!reg.test(name)) {
+            name_msg.className = "error_msg";
+            a = 0;
+        }
+        // 错误则添加样式
+        else {
+            name_msg.className = "nice_msg";
+            a = 1;
+        }
+        if (!regpass.test(password)) {
+            pass_msg.className = "error_msg";
+            a = 0;
+        }
+        else {
+            pass_msg.className = "nice_msg";
+            a = 1;
+        }
+        return a === 1;
+
+    }
+
+
+</script>
 </html>
