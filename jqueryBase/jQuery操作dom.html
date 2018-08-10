@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery操作dom</title>
+    <script src="../resource/js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<p><b>读写</b>dom对象</p>
+<p><input type="button" value="SSS"></p>
+<p><img src="../resource/img/15.jpg"></p>
+<ul>
+    <li>北京</li>
+    <li>上海</li>
+    <li id="gz">广州</li>
+    <li>深圳</li>
+    <li>天津</li>
+</ul>
+<p id="p1">苍老师#null</p>
+<button onclick="chg();">切换</button>
+</body>
+<script type="text/javascript">
+    //加载完页面就会      执行这一个方法
+    $(function () {
+        // 读写dom
+        //1.1 HTML（） == inner HTML
+        console.log("xxxxxxxxxxxxxxxxxxxxx");
+        console.log($("p:eq(0)").html());
+        $("p:eq(0)").html('<u>读写</u>>dom对象节点');
+        //1.2 text()==innerhtml
+        //1.3 val() == value
+        console.log($("p:eq(1)"));
+    })
+    $("p:eq(1) input").val("BBB");
+
+    $("img").attr("src","../resource/img/16.jpg");
+//jquery add tag
+    li = $("    <li>杭州</li>\n")
+    li1 = $("    <li>天津</li>\n")
+//2.2add
+    $("ul").prepend(li);
+    $("ul").prepend(li1);
+
+    // 删除节点
+    $("li:contains('天津')").remove();
+    //3. 根据层次查询节点
+    // 先获取某个节点并进行一些并行处理
+    // 然后在获取该节点的兄弟进一步处理
+    console.log($("ul").find("li:contains('上')"));
+
+    //样式操作
+    // 4.1 用样式来访问css属性
+
+    // 4.2 用class来访问class属性
+
+
+
+
+
+</script>
+</html>
